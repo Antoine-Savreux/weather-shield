@@ -1,6 +1,7 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import HomeMenu from "@/components/HomeMenu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +16,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="fr">
+      <body className={`${inter.className} bg-slate-50 h-screen w-screen`}>
+        {/* header */}
+        <header className="flex items-center justify-between p-4">
+          <HomeMenu />
+          <h1 className="text-3xl font-bold bg-gradient-to-l from-yellow-400 to-green-300 bg-clip-text text-transparent">
+            Weather Shield
+          </h1>
+        </header>
+        {children}
+        {/* footer */}
+        <footer className="w-full flex justify-center p-1 bg-gradient-to-l from-yellow-400 to-green-300 bg-clip-text text-transparent">
+          <p className="text-xs">Weather Shield - tous droits réservés</p>
+        </footer>
+      </body>
     </html>
   );
 }
