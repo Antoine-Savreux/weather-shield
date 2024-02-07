@@ -41,7 +41,7 @@ export default function Home() {
 
   const getParisWeather = async () => {
     const res = await fetch(
-      `${baseUrl}/current.json?key=${apiKey}&q=Paris&aqi=no&lang=fr`
+      `${baseUrl}/current.json?key=${apiKey}&q=lyon&aqi=no&lang=fr`
     );
     if (!res.ok) {
       throw new Error("failed to fetch data");
