@@ -73,7 +73,7 @@ export default function Home() {
         setSearch={setSearch}
         getWeatherBySearch={getWeatherBySearch}
       />
-      <WeatherCard parisWeather={locationWeather} />
+      <WeatherCard locationWeather={locationWeather} />
     </PageContainer>
   );
 }
