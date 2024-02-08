@@ -24,7 +24,7 @@ export default function Home() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const apiKey = process.env.NEXT_PUBLIC_WEATHERAPIKEY;
 
-  const [parisWeather, setParisWeather] = useState<WeatherData>({
+  const [locationWeather, setLocationWeather] = useState<WeatherData>({
     location: {
       name: "",
       localtime: "",
@@ -39,7 +39,9 @@ export default function Home() {
     },
   });
 
-  const getParisWeather = async () => {
+  const [search, setSearch] = useState("");
+
+  const getWeather = async () => {
     const res = await fetch(
       `${baseUrl}/current.json?key=${apiKey}&q=lyon&aqi=no&lang=fr`
     );
@@ -47,17 +49,31 @@ export default function Home() {
       throw new Error("failed to fetch data");
     }
     const data = await res.json();
-    setParisWeather(data);
+    setLocationWeather(data);
+  };
+
+  const getWeatherBySearch = async () => {
+    const res = await fetch(
+      `${baseUrl}/current.json?key=${apiKey}&q=${search}&aqi=no&lang=fr`
+    );
+    if (!res.ok) {
+      throw new Error("failed to fetch data");
+    }
+    const data = await res.json();
+    setLocationWeather(data);
   };
 
   useEffect(() => {
-    getParisWeather();
+    getWeather();
   }, []);
 
   return (
     <PageContainer>
-      <SearchInput />
-      <WeatherCard parisWeather={parisWeather} />
+      <SearchInput
+        setSearch={setSearch}
+        getWeatherBySearch={getWeatherBySearch}
+      />
+      <WeatherCard parisWeather={locationWeather} />
     </PageContainer>
   );
 }
