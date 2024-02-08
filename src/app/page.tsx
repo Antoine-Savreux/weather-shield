@@ -3,7 +3,7 @@
 import PageContainer from "@/components/PageContainer";
 import WeatherCard from "@/components/WeatherCard";
 import SearchInput from "@/components/SearchInput";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 
 export type WeatherData = {
   location: {
