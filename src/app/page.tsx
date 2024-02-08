@@ -4,6 +4,7 @@ import PageContainer from "@/components/PageContainer";
 import WeatherCard from "@/components/WeatherCard";
 import SearchInput from "@/components/SearchInput";
 import { SetStateAction, useEffect, useState } from "react";
+import Loading from "@/components/loading";
 
 export type WeatherData = {
   location: {
@@ -40,6 +41,7 @@ export default function Home() {
   });
 
   const [search, setSearch] = useState("");
+  const [isFetching, setIsFetching] = useState(false);
 
   const getWeather = async () => {
     const res = await fetch(
@@ -53,14 +55,19 @@ export default function Home() {
   };
 
   const getWeatherBySearch = async () => {
+    //is fetching true
+    setIsFetching(true);
     const res = await fetch(
       `${baseUrl}/current.json?key=${apiKey}&q=${search}&aqi=no&lang=fr`
     );
+
     if (!res.ok) {
       throw new Error("failed to fetch data");
     }
     const data = await res.json();
     setLocationWeather(data);
+    //isfetching false
+    setTimeout(() => setIsFetching(false), 1500);
   };
 
   useEffect(() => {
@@ -69,11 +76,17 @@ export default function Home() {
 
   return (
     <PageContainer>
-      <SearchInput
-        setSearch={setSearch}
-        getWeatherBySearch={getWeatherBySearch}
-      />
-      <WeatherCard locationWeather={locationWeather} />
+      {isFetching ? (
+        <Loading />
+      ) : (
+        <>
+          <SearchInput
+            setSearch={setSearch}
+            getWeatherBySearch={getWeatherBySearch}
+          />
+          <WeatherCard locationWeather={locationWeather} />
+        </>
+      )}
     </PageContainer>
   );
 }
