@@ -18,16 +18,14 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${inter.className} bg-slate-50 h-screen w-screen`}>
-        {/* header */}
-        <header className="flex items-center justify-between p-4">
+        <header className="flex items-center justify-between p-4 mb-1">
           <HomeMenu />
           <h1 className="text-3xl font-bold bg-gradient-to-l from-yellow-400 to-green-300 bg-clip-text text-transparent">
             Weather Shield
           </h1>
         </header>
         {children}
-        {/* footer */}
-        <footer className="w-full flex justify-center p-1 bg-gradient-to-l from-yellow-400 to-green-300 bg-clip-text text-transparent">
+        <footer className="w-full bottom-0 flex justify-center p-1 bg-gradient-to-l from-yellow-400 to-green-300 bg-clip-text text-transparent">
           <p className="text-xs">Weather Shield - tous droits réservés</p>
         </footer>
       </body>

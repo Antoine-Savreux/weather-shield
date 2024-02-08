@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 export default function SearchInput() {
   return (
-    <div className="w-full flex items-center space-x-2 p-5">
+    <div className="w-full flex items-center space-x-2">
       <Input type="text" placeholder="Entrer une ville" />
       <Button type="submit">Rechercher</Button>
     </div>

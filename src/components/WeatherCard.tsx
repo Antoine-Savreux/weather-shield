@@ -15,19 +15,26 @@ export default function WeatherCard({
 }: {
   parisWeather: WeatherData;
 }) {
+  const date = new Date(parisWeather.location.localtime).toLocaleDateString(
+    "fr-FR",
+    { month: "long", day: "2-digit" }
+  );
+
   return (
-    <Card className="max-w-fit min-w-fit h-full flex flex-col py-6 px-4 justify-around">
+    <Card className="h-auto w-full flex flex-col py-6 px-4 gap-14">
       <CardHeader className="text-center">
-        <p className="text-xl">{parisWeather.location.localtime}</p>
-        <p className="text-3xl">{parisWeather.location.name}</p>
+        <span className="text-6xl font-light">{date}</span>
+        <h1 className="text-8xl font-bold">{parisWeather.location.name}</h1>
       </CardHeader>
       <CardContent className="flex flex-col items-center gap-8">
         <WeatherIcon code={parisWeather.current.condition.code} />
-        <div className="flex items-center gap-5">
-          <p className="text-xl font-bold">{`${parisWeather.current.temp_c} °c`}</p>
-          <p className="text-3xl">{parisWeather.current.condition.text}</p>
-        </div>
       </CardContent>
+      <CardFooter className="justify-center space-x-3">
+        <p className="text-4xl font-bold">{`${parisWeather.current.temp_c} °c`}</p>
+        <p className="text-2xl font-normal">
+          {parisWeather.current.condition.text}
+        </p>
+      </CardFooter>
     </Card>
   );
 }

@@ -56,8 +56,8 @@ export default function Home() {
 
   return (
     <PageContainer>
-      <WeatherCard parisWeather={parisWeather} />
       <SearchInput />
+      <WeatherCard parisWeather={parisWeather} />
     </PageContainer>
   );
 }
