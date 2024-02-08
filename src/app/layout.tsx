@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${inter.className} bg-slate-50 h-screen w-screen`}>
-        <header className="flex items-center justify-between p-4 mb-1">
+        <header className="flex items-center justify-between p-4">
           <HomeMenu />
           <h1 className="text-3xl font-bold bg-gradient-to-l from-yellow-400 to-green-300 bg-clip-text text-transparent">
             Weather Shield
